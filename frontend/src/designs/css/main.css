@@ -13,12 +13,16 @@ body {
   min-height: 100vh;
 }
 
+
 .main {
-  flex: 1;
+  flex: 1 ;
 }
 
 .bg-dark {
   background-color: #12002b;
+  padding-top: 20px;
+  padding-bottom: 50px;
+
 }
 
 .sr-only {
@@ -45,8 +49,14 @@ body {
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
+  
 }
 
+.menu-nav-sign{
+display: flex ;
+flex-direction: column;
+margin: 0;
+}
 
 .main-nav-item {
   text-decoration: none;
@@ -54,6 +64,12 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.main-nav-item p{
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .main-nav-item:hover {
@@ -177,10 +193,12 @@ body {
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
+  padding-bottom: 150px;
 }
 
 .sign-in-icon {
-  font-size: 5rem;
+  width: 16px;
+  height: 16px;
 }
 
 .input-remember {

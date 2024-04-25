@@ -1,18 +1,19 @@
 import { NavLink } from "react-router-dom";
 import logo from "../designs/img/argentBankLogo.webp"
-import userLogo from "../designs/img/circle-user-solid.svg"
 
-const Navigation = ({textNav}:{textNav : string}) => {
+
+const Navigation = ({textNav, logoUser}:{textNav : string, logoUser:string}) => {
     return (
         <div className="main-nav">
             <NavLink to="/" className="main-nav-item">
                 <img src={logo} alt="logo" className="main-nav-logo-image" />
             </NavLink>
-            
+            <div>
             <NavLink to="/sign-in" className="main-nav-item">
-               <img src={userLogo} alt="userLogo" className="user-logo" />
+               <img src={logoUser} alt="userLogo" className="user-logo" />
                <p>{textNav}</p>
             </NavLink>
+            </div>
             
         </div>
     );

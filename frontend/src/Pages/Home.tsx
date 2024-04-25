@@ -5,13 +5,13 @@ import Navigation from '../Components/Navigation';
 import chatIcon from "../designs/img/icon-chat.webp"
 import dollarIcon from "../designs/img/icon-money.webp"
 import securityIcon from "../designs/img/icon-security.webp"
-
+import userLogo from "../designs/img/circle-user-solid.svg"
 
 const Home = () => {
    
     return (
         <div>
-            <Navigation textNav='Sign In'/>
+            <Navigation textNav='Sign In' logoUser={userLogo} />
             <Banner />
             <section className='features'>
                 <h2 className='sr-only'>Features</h2>
