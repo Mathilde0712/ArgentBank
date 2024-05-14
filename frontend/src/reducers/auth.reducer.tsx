@@ -1,37 +1,33 @@
+// import { AUTH_POST } from "../actions/auth.action";
 
 // reducers/authReducer.js
 const initialState = {
+  user: {
+    "email": "",
+    "password": "",
+    "firstName": "",
+    "lastName": "",
+    "userName": "",
+    "token" :"",
+  },
   isAuthenticated: false,
-  user: null,
-  error: null,
 };
 
-const authReducer = (state = initialState, action : any) => {
+export default function authReducer(state = initialState,action : any){
   switch (action.type) {
-    case "LOGIN_SUCCESS":
-      return {
-        ...state,
-        isAuthenticated: true,
-        user: action.payload,
-        error: null,
-      };
-    case "LOGIN_FAILURE":
-      return {
-        ...state,
-        isAuthenticated: false,
-        user: null,
-        error: action.payload,
-      };
-    case "LOGOUT":
-      return {
-        ...state,
-        isAuthenticated: false,
-        user: null,
-        error: null,
-      };
-    default:
-      return state;
-  }
-};
+    case AUTH_POST:
+  return {...state,
+    "email": action.payload.email,
+    "password":action.payload.password,
+    "firstName": action.payload.firstName,
+    "lastName": action.payload.lastName,
+    "userName": action.payload.userName,
+    "token" :action.payload.token,
+    isAuthenticated : true,
+}
+  
 
-export default authReducer;
+  default:
+    return {...state};
+}
+}
