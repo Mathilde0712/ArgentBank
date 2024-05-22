@@ -1,15 +1,14 @@
 import Account from "../Components/Account";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
-import NavigationUser from "../Components/NavigationUser";
+import Navigation from "../Components/Navigation";
 import userLogo from "../designs/img/circle-user-solid.svg";
 
 const User = () => {
-    // const id = useParams();
-
+  
   return (
     <div>
-      <NavigationUser textNav="Sign In" logoUser={userLogo} name="tony" />
+      <Navigation textNav="Sign Out" logoUser={userLogo}  />
       <main className="main bg-dark">
         <Header name="tony" />
         <h2 className="sr-only">Accounts</h2>

@@ -1,40 +1,65 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
+import { AppDispatch } from "../app/store";
 
+export const login = async (
+  email: string,
+  password: string,
+  dispatch: AppDispatch,
+  navigate: any
+) => {
+  const data = {
+    email: email,
+    password: password,
+  };
 
-interface UserData {
-    email: string;
-    password: string;
+  try {
+    const response = await fetch("http://localhost:3001/api/v1/user/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      const responseData = await response.json();
+      const token = responseData.body.token;
+      sessionStorage.setItem("token", token);
+      console.log(token);
+      dispatch(getToken(token));
+      navigate("/user");
+    } else {
+        alert("Erreur dans l’identifiant ou le mot de passe");
+        console.error("Erreur lors de la requête de connexion:");
+      }
+  } catch (error) {
+    console.error(error);
   }
-    
-export const register = createAsyncThunk("auth/register", async(userData: UserData, thunkAPI)=>{
-    try{
-const response = await axios.post("http://localhost:3001/api/v1/user/login", {user : userData});
-return response.data.user;
-    } catch (err) {
-return thunkAPI.rejectWithValue(err.response.data.errors)
-    }
-})
+};
 
 export const authSlice = createSlice({
-    name: "auth",
-    initialState: {
-        currentUser: undefined,
-        isLoading: false,
+  name: "auth",
+  initialState: {
+    token: null,
+    user: {
+      email: "",
+      firstName: "",
+      lastName: "",
+      userName: "",
     },
-    reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(register.pending, (state) => {
-            state.isLoading = true;
-        }).addCase(register.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.currentUser = action.payload;
-    
-    }).addCase(register.rejected, (state) => {
-        state.isLoading = false;
-       
-    })
-}});
+  },
+  reducers: {
+    getToken: (state, action) => {
+      state.token = action.payload;
+    },
 
+    logout: (state) => {
+      state.token = null;
+      state.user = { ...state.user };
+    },
+  },
+});
 
+export const { getToken, logout } = authSlice.actions;
 export default authSlice.reducer;

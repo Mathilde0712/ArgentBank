@@ -312,3 +312,9 @@ margin: 0;
     width: 200px;
   }
 }
+
+
+.textError {
+  font-size: 100px;
+  color: black;
+}
