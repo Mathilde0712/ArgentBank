@@ -6,12 +6,31 @@ import chatIcon from "../designs/img/icon-chat.webp"
 import dollarIcon from "../designs/img/icon-money.webp"
 import securityIcon from "../designs/img/icon-security.webp"
 import userLogo from "../designs/img/circle-user-solid.svg"
-
+import { AppDispatch, RootState } from "../app/store";
+import { useEffect } from "react";
+import { userData } from "../feature/auth.slice";
+import { useDispatch, useSelector } from 'react-redux';
 const Home = () => {
-   
+    const user = useSelector((state: RootState) => state.auth.user)
+    const dispatch: AppDispatch = useDispatch();
+    const token = useSelector((state: RootState) => state.auth.token);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        if (token) { // Vérification si le token existe avant de faire l'appel
+          try {
+            await userData(token, dispatch); // Utiliser directement storedToken
+          } catch (error) {
+            console.error('Une erreur s\'est produite lors de la récupération du profil :', error);
+          }
+        }
+      };
+  
+      fetchData();
+    }, [token, dispatch]);
     return (
         <div>
-            <Navigation textNav='Sign In' logoUser={userLogo} />
+            <Navigation textNav='Sign In' logoUser={userLogo} name={user.userName}/>
             <Banner />
             <section className='features'>
                 <h2 className='sr-only'>Features</h2>

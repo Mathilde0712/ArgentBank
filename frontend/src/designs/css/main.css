@@ -1,3 +1,4 @@
+
 html {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -313,8 +314,41 @@ margin: 0;
   }
 }
 
+#lastname,#firstname{
+  background-color: #d4d2cd;
+  border: none;
+}
 
-.textError {
-  font-size: 100px;
-  color: black;
+
+.editUser{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.editContent {
+ box-sizing: border-box;
+ background-color: white;
+ width: 300px;
+ margin: 0 auto;
+ padding: 2rem;
+margin-bottom: 20px;
+}
+
+.buttonsEdit{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.save-button{
+  padding: 8px;
+  width: 100px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
 }

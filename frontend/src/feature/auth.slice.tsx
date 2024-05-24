@@ -30,13 +30,58 @@ export const login = async (
       dispatch(getToken(token));
       navigate("/user");
     } else {
-        alert("Erreur dans l’identifiant ou le mot de passe");
-        console.error("Erreur lors de la requête de connexion:");
-      }
+      alert("Erreur dans l’identifiant ou le mot de passe");
+      console.error("Erreur lors de la requête de connexion:");
+    }
   } catch (error) {
     console.error(error);
   }
 };
+
+export const userData = async (token: string, dispatch: AppDispatch) => {
+  try {
+    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization:`Bearer ${token}`,
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(setUser(data.body));
+      dispatch(setUsername(data.body.userName));
+    } else {
+      console.error("Erreur lors de la requête de profil");
+    }
+  } catch (error) {
+    console.error("Erreur lors de la requête:", error);
+  }
+};
+
+export const editUsername = async (token: string, newUsername : string, dispatch : AppDispatch) => {
+  try {
+    
+    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ userName: newUsername }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(setUsername(data.body.userName));
+    } else {
+      alert("Erreur dans la modification de l'username");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
 export const authSlice = createSlice({
   name: "auth",
@@ -53,6 +98,12 @@ export const authSlice = createSlice({
     getToken: (state, action) => {
       state.token = action.payload;
     },
+    setUser: (state, action) => {
+      state.user = { ...state.user, ...action.payload };
+    },
+    setUsername: (state, action) => {
+      state.user.userName = action.payload;
+    },
 
     logout: (state) => {
       state.token = null;
@@ -61,5 +112,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { getToken, logout } = authSlice.actions;
+export const { getToken, logout, setUser, setUsername } = authSlice.actions;
 export default authSlice.reducer;

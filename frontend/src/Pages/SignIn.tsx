@@ -9,7 +9,7 @@ const SignIn = () => {
    
     return (
         <div>
-            <Navigation textNav='Sign In' logoUser={userLogo} />
+            <Navigation textNav='Sign In' logoUser={userLogo} name="" />
             <main className="main bg-dark">
             <Form />
             </main>

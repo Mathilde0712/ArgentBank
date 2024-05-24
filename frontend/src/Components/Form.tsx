@@ -8,8 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const navigate = useNavigate()
-    const dispatch: AppDispatch = useDispatch(); 
-
+  const dispatch: AppDispatch = useDispatch(); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | undefined>(undefined);
