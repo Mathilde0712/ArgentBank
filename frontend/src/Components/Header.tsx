@@ -28,7 +28,7 @@ const Header = () => {
         <div className='header'>
             <h1>Welcome back {user.firstName + " " + user.lastName}!</h1>
             <NavLink to="/profile" >
-            <Button classe="edit-button" content ='Edit Name' />
+            <Button classe="edit-button" content ='Edit Name' click={null} />
             </NavLink>
         </div>
     );

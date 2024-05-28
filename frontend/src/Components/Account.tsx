@@ -9,7 +9,7 @@ const Account = ({title, amount, description}: {title : string, amount :string, 
         <p className="account-amount-description">{description}</p>
       </div>
       <div className="account-content-wrapper cta">
-        <Button classe="transaction-button" content="View transactions" />
+        <Button classe="transaction-button" content="View transactions" click={null} />
         
       </div>
     </section>

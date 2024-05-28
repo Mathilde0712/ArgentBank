@@ -36,7 +36,7 @@ const UserProfile = () => {
       <Navigation textNav="Sign Out" logoUser={userLogo} name={user.userName} />
    
       <main className="main bg-dark">
-        <EditFormUser firstname ={user.firstName} lastname={user.lastName} username={user.userName}/>
+        <EditFormUser firstname ={user.firstName} lastname={user.lastName}/>
       <h2 className="sr-only">Accounts</h2>
       <Account
         title="Argent Bank Checking (x8349)"

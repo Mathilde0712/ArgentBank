@@ -57,7 +57,7 @@ const Form = () => {
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-        <Button classe="sign-in-button" content="Sign In" />
+        <Button classe="sign-in-button" content="Sign In" click={null} />
       </form>
      
     </section>
