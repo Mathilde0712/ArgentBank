@@ -5,19 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUsername } from "../feature/auth.slice";
 import { useNavigate } from "react-router-dom";
 
-const EditFormUser = ({
-  firstname,
-  lastname,
-}: {
-  firstname: string;
-  lastname: string;
-}) => {
+const EditFormUser = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   const token = useSelector((state: RootState) => state.auth.token);
   const [username, setUsername] = useState(user.userName);
   const AppDispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
- 
 
   useEffect(() => {
     setUsername(user.userName);
@@ -54,11 +47,21 @@ const EditFormUser = ({
         </div>
         <div className="input-wrapper">
           <label htmlFor="firstname">First name : </label>
-          <input type="text" id="firstname" readOnly={true} value={firstname} />
+          <input
+            type="text"
+            id="firstname"
+            readOnly={true}
+            value={user.firstName}
+          />
         </div>
         <div className="input-wrapper">
           <label htmlFor="lastname">Last name : </label>
-          <input type="text" id="lastname" readOnly={true} value={lastname} />
+          <input
+            type="text"
+            id="lastname"
+            readOnly={true}
+            value={user.lastName}
+          />
         </div>
         <div className="buttonsEdit">
           <Button classe="save-button" content="Save" click={saveButton} />

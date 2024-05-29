@@ -7,26 +7,24 @@ import { login } from "../feature/auth.slice";
 import { useNavigate } from "react-router-dom";
 
 const Form = () => {
-  const navigate = useNavigate()
-  const dispatch: AppDispatch = useDispatch(); 
+  const navigate = useNavigate();
+  const dispatch: AppDispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | undefined>(undefined);
 
   const signIn = async () => {
-    try {     
+    try {
       await login(email, password, dispatch, navigate);
-  
     } catch (error) {
-      setError("erreur lors de la connexion")
+      setError("erreur lors de la connexion");
     }
   };
 
   const onSubmit = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
-     await signIn();
-    
-  }; 
+    await signIn();
+  };
   return (
     <section className="sign-in-content">
       <img src={userLogo} className="sign-in-icon" alt="user icon" />
@@ -52,14 +50,13 @@ const Form = () => {
             }}
           />
         </div>
-        {error && <div className="textError">Erreur lors de la connexion</div>} 
+        {error && <div className="textError">Erreur lors de la connexion</div>}
         <div className="input-remember">
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>
         </div>
         <Button classe="sign-in-button" content="Sign In" click={null} />
       </form>
-     
     </section>
   );
 };

@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Feature = ({imgSrc, title, text, icon}:{imgSrc : string, title :string, text:string, icon:string}) => {
     return (
