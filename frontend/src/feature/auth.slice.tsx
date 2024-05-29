@@ -31,7 +31,7 @@ export const login = async (
       navigate("/user");
     } else {
       alert("Erreur dans l’identifiant ou le mot de passe");
-      console.error("Erreur lors de la requête de connexion:");
+      console.error("Erreur lors de la requête de connexion");
     }
   } catch (error) {
     console.error(error);

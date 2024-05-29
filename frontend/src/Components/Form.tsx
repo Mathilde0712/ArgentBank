@@ -11,13 +11,13 @@ const Form = () => {
   const dispatch: AppDispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | undefined>(undefined);
+  
 
   const signIn = async () => {
     try {
       await login(email, password, dispatch, navigate);
     } catch (error) {
-      setError("erreur lors de la connexion");
+     console.error("erreur lors de la connexion")
     }
   };
 
@@ -50,7 +50,7 @@ const Form = () => {
             }}
           />
         </div>
-        {error && <div className="textError">Erreur lors de la connexion</div>}
+     
         <div className="input-remember">
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>
