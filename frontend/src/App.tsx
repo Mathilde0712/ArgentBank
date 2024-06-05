@@ -24,7 +24,7 @@ function App() {
             {token ? (
        <Route path="/profile" element={<UserProfile />}/>
       ) : (
-        <Route path="/user" element={<SignIn />}/>
+        <Route path="/profile" element={<SignIn />}/>
       )}
     {/*<Route path="*" element={}/> */}
     </Routes>

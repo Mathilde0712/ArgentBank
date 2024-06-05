@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import userLogo from "../designs/img/circle-user-solid.svg";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
@@ -11,11 +11,28 @@ const Form = () => {
   const dispatch: AppDispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('email');
+    const savedPassword = localStorage.getItem('password');
+    if (savedEmail && savedPassword) {
+      setEmail(savedEmail);
+      setPassword(savedPassword);
+      setRememberMe(true);
+    }
+  }, []);
 
   const signIn = async () => {
     try {
       await login(email, password, dispatch, navigate);
+      if (rememberMe) {
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+      } else {
+        localStorage.removeItem('email');
+        localStorage.removeItem('password');
+      }
     } catch (error) {
      console.error("erreur lors de la connexion")
     }
@@ -35,6 +52,7 @@ const Form = () => {
           <input
             type="text"
             id="username"
+            value={email}
             onChange={(e: React.FormEvent<EventTarget>): void => {
               setEmail((e.target as HTMLInputElement).value);
             }}
@@ -45,6 +63,7 @@ const Form = () => {
           <input
             type="password"
             id="password"
+            value={password}
             onChange={(e: React.FormEvent<EventTarget>): void => {
               setPassword((e.target as HTMLInputElement).value);
             }}
@@ -52,7 +71,8 @@ const Form = () => {
         </div>
      
         <div className="input-remember">
-          <input type="checkbox" id="remember-me" />
+          <input type="checkbox" id="remember-me" checked={rememberMe}
+            onChange={(e) => setRememberMe(e.target.checked)} />
           <label htmlFor="remember-me">Remember me</label>
         </div>
         <Button classe="sign-in-button" content="Sign In" click={null} />
