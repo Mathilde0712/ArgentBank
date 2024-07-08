@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppDispatch } from "../app/store";
+import { log } from "console";
 
 export const login = async (
   email: string,
@@ -26,7 +27,6 @@ export const login = async (
       const responseData = await response.json();
       const token = responseData.body.token;
       sessionStorage.setItem("token", token);
-      console.log(token);
       dispatch(getToken(token));
       navigate("/user");
     } else {
@@ -44,7 +44,7 @@ export const userData = async (token: string, dispatch: AppDispatch) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization:`Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     });
     if (response.ok) {
@@ -59,13 +59,16 @@ export const userData = async (token: string, dispatch: AppDispatch) => {
   }
 };
 
-export const editUsername = async (token: string, newUsername : string, dispatch : AppDispatch) => {
+export const editUsername = async (
+  token: string,
+  newUsername: string,
+  dispatch: AppDispatch
+) => {
   try {
-    
     const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ userName: newUsername }),
@@ -81,7 +84,6 @@ export const editUsername = async (token: string, newUsername : string, dispatch
     console.error(error);
   }
 };
-
 
 export const authSlice = createSlice({
   name: "auth",
