@@ -9,6 +9,7 @@ const Header = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   const token = sessionStorage.getItem("token");
   const dispatch: AppDispatch = useDispatch();
+
   useEffect(() => {
     const getData = async () => {
       if (token) {
@@ -25,7 +26,10 @@ const Header = () => {
 
   return (
     <div className="header">
-      <h1>Welcome back <br/>{user.firstName + " " + user.lastName}!</h1>
+      <h1>
+        Welcome back <br />
+        {user.firstName + " " + user.lastName}!
+      </h1>
       <NavLink to="/profile">
         <Button classe="edit-button" content="Edit Name" click={null} />
       </NavLink>

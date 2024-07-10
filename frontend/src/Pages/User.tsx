@@ -1,7 +1,7 @@
-import Account from "../Components/Account";
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-import Navigation from "../Components/Navigation";
+import Account from "../components/Account";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import Navigation from "../components/Navigation";
 import userLogo from "../designs/img/circle-user-solid.svg";
 
 const User = () => {

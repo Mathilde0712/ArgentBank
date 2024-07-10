@@ -1,6 +1,6 @@
-import Navigation from "../Components/Navigation";
-import Footer from "../Components/Footer";
-import Form from "../Components/Form";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import Form from "../components/Form";
 import userLogo from "../designs/img/circle-user-solid.svg";
 
 const SignIn = () => {

@@ -9,6 +9,7 @@ const EditFormUser = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   const token = useSelector((state: RootState) => state.auth.token);
   const [username, setUsername] = useState(user.userName);
+  const [error, setError] = useState("");
   const AppDispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,6 +24,10 @@ const EditFormUser = () => {
 
   const saveButton = async (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
+    if (username.trim() === "") {
+      setError("Vous devez renseigner un nom d'utilisateur");
+      return;
+    }
     if (token) {
       await editUsername(token, username, AppDispatch);
       setUsername("");
@@ -42,8 +47,10 @@ const EditFormUser = () => {
             value={username}
             onChange={(e: React.FormEvent<EventTarget>): void => {
               setUsername((e.target as HTMLInputElement).value);
+              setError("");
             }}
           />
+          {error && <span className="error-message">{error}</span>}
         </div>
         <div className="input-wrapper">
           <label htmlFor="firstname">First name : </label>

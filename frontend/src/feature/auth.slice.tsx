@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppDispatch } from "../app/store";
-import { log } from "console";
 
 export const login = async (
   email: string,
@@ -26,8 +25,7 @@ export const login = async (
     if (response.ok) {
       const responseData = await response.json();
       const token = responseData.body.token;
-      sessionStorage.setItem("token", token);
-      dispatch(getToken(token));
+      dispatch(setToken(token));
       navigate("/user");
     } else {
       alert("Erreur dans l’identifiant ou le mot de passe");
@@ -97,7 +95,7 @@ export const authSlice = createSlice({
     },
   },
   reducers: {
-    getToken: (state, action) => {
+    setToken: (state, action) => {
       state.token = action.payload;
     },
     setUser: (state, action) => {
@@ -114,5 +112,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { getToken, logout, setUser, setUsername } = authSlice.actions;
+export const { setToken, logout, setUser, setUsername } = authSlice.actions;
 export default authSlice.reducer;

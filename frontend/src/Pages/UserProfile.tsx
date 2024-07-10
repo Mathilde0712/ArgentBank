@@ -1,9 +1,9 @@
-import Navigation from "../Components/Navigation";
+import Navigation from "../components/Navigation";
 import userLogo from "../designs/img/circle-user-solid.svg";
 
-import Account from "../Components/Account";
-import Footer from "../Components/Footer";
-import EditFormUser from "../Components/EditFormUser";
+import Account from "../components/Account";
+import Footer from "../components/Footer";
+import EditFormUser from "../components/EditFormUser";
 
 const UserProfile = () => {
   return (

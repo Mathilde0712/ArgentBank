@@ -14,11 +14,9 @@ const Form = () => {
   const [rememberMe, setRememberMe] = useState(false);
 
   useEffect(() => {
-    const savedEmail = localStorage.getItem('email');
-    const savedPassword = localStorage.getItem('password');
-    if (savedEmail && savedPassword) {
+    const savedEmail = localStorage.getItem("email");
+    if (savedEmail) {
       setEmail(savedEmail);
-      setPassword(savedPassword);
       setRememberMe(true);
     }
   }, []);
@@ -27,14 +25,14 @@ const Form = () => {
     try {
       await login(email, password, dispatch, navigate);
       if (rememberMe) {
-        localStorage.setItem('email', email);
-        localStorage.setItem('password', password);
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
       } else {
-        localStorage.removeItem('email');
-        localStorage.removeItem('password');
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
       }
     } catch (error) {
-     console.error("erreur lors de la connexion")
+      console.error("erreur lors de la connexion");
     }
   };
 
@@ -69,10 +67,14 @@ const Form = () => {
             }}
           />
         </div>
-     
+
         <div className="input-remember">
-          <input type="checkbox" id="remember-me" checked={rememberMe}
-            onChange={(e) => setRememberMe(e.target.checked)} />
+          <input
+            type="checkbox"
+            id="remember-me"
+            checked={rememberMe}
+            onChange={(e) => setRememberMe(e.target.checked)}
+          />
           <label htmlFor="remember-me">Remember me</label>
         </div>
         <Button classe="sign-in-button" content="Sign In" click={null} />
