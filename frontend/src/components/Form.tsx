@@ -13,6 +13,7 @@ const Form = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
+  //code pour sauvegarder l'email quand l'utilisateur coche remember me
   useEffect(() => {
     const savedEmail = localStorage.getItem("email");
     if (savedEmail) {
